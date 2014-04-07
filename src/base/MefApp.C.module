@@ -1,0 +1,42 @@
+#include "MefApp.h"
+#include "Moose.h"
+#include "AppFactory.h"
+
+template<>
+InputParameters validParams<MefApp>()
+{
+  InputParameters params = validParams<MooseApp>();
+  return params;
+}
+
+MefApp::MefApp(const std::string & name, InputParameters parameters) :
+    MooseApp(name, parameters)
+{
+  srand(libMesh::processor_id());
+  
+  Moose::registerObjects(_factory);
+  MefApp::registerObjects(_factory);
+
+  Moose::associateSyntax(_syntax, _action_factory);
+  MefApp::associateSyntax(_syntax, _action_factory);
+}
+
+MefApp::~MefApp()
+{
+}
+
+void
+MefApp::registerApps()
+{
+  registerApp(MefApp);
+}
+
+void
+MefApp::registerObjects(Factory & factory)
+{
+}
+
+void
+MefApp::associateSyntax(Syntax & syntax, ActionFactory & action_factory)
+{
+}
