@@ -13,8 +13,8 @@ InputParameters validParams<MefApp>()
 MefApp::MefApp(const std::string & name, InputParameters parameters) :
     MooseApp(name, parameters)
 {
-  srand(libMesh::processor_id());
-  
+  srand(processor_id());
+
   Moose::registerObjects(_factory);
   ModulesApp::registerObjects(_factory);
   MefApp::registerObjects(_factory);
