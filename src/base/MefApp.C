@@ -28,6 +28,7 @@ MefApp::~MefApp()
 {
 }
 
+extern "C" void MefApp__registerApps() { MefApp::registerApps(); }
 void
 MefApp::registerApps()
 {
